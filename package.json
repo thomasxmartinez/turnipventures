@@ -1,0 +1,39 @@
+{
+  "name": "turnipventures",
+  "version": "1.0.0",
+  "description": "### Team [Thomas Martinez](https://github.com/thomasxmartinez) |",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha",
+    "debug": "DEBUG=turnip* npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomasxmartinez/turnipventures.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thomasxmartinez/turnipventures/issues"
+  },
+  "homepage": "https://github.com/thomasxmartinez/turnipventures#readme",
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "debug": "^2.6.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "http-errors": "^1.6.1",
+    "jsonwebtoken": "^7.3.0",
+    "mongoose": "^4.9.2",
+    "morgan": "^1.8.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "superagent": "^3.5.2"
+  }
+}
