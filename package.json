@@ -4,7 +4,13 @@
   "description": "### Team [Thomas Martinez](https://github.com/thomasxmartinez) |",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha",
+    "start": "node main.js",
+    "heroku-postbuild": "./node_modules/webpack/bin/webpack.js",
+    "watch": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot",
+    "bwatch": "./node_modules/nodemon/bin/nodemon.js main.js",
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha ./server/test",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls ",
+    "lint": "./node_modules/eslint/bin/eslint.js .",
     "debug": "DEBUG=turnip* npm run test"
   },
   "repository": {
@@ -29,11 +35,22 @@
     "http-errors": "^1.6.1",
     "jsonwebtoken": "^7.3.0",
     "mongoose": "^4.9.2",
-    "morgan": "^1.8.1"
+    "morgan": "^1.8.1",
+    "aws-sdk": "^2.9.0",
+    "del": "^2.2.2",
+    "multer": "^1.3.0",
+    "ngrok": "^2.2.6",
+    "twilio": "^2.11.1",
+    "stripe": "^4.15.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
-    "superagent": "^3.5.2"
+    "aws-sdk": "^2.22.0",
+    "aws-sdk-mock": "^1.6.1",
+    "coveralls": "^2.11.15",
+    "eslint": "^3.14.1",
+    "istanbul": "^0.4.5",
+    "nodemon": "^1.11.0"
   }
 }

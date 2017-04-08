@@ -3,9 +3,11 @@
 ### Team
 [Thomas Martinez](https://github.com/thomasxmartinez) |
 
+[![Coverage Status](https://coveralls.io/repos/github/thomasxmartinez/turnipventures/badge.svg?branch=master)](https://coveralls.io/github/thomasxmartinez/turnipventures?branch=master)
+
 ## Description
 **Turnip Ventures
-- Turnip would like to have a mobile responsive site that also allows payment of consulting fees for all customers. This will include a blog so the customers will know what the company has been up to along with associated projects. There will be an admin login page as well for the admin to write the blog postings. 
+- Turnip would like to have a mobile responsive site that also allows payment of consulting fees for all customers. This will include a blog so the customers will know what the company has been up to along with associated projects. There will be an admin login page as well for the admin to write the blog postings.
 
 ## App directory
 -
