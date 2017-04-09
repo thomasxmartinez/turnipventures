@@ -1,49 +1,35 @@
 'use strict';
 
 require('./mock-env.js');
-
 const expect = require('chai').expect;
 const superagent = require('superagent');
-
 const User = require('../model/user.js');
+const userMocks = require('./lib/user-mocks.js');
+const serverControl = require('./lib/server-control.js');
 
-const baseURL = `http://localhost:${process.env.PORT}`
-const server = require('../server.js');
+const baseURL = `http://localhost:${process.env.PORT}`;
 
 describe('testing auth-router', function(){
-  before(done => {
-    if(!server.isRunning){
-      server.listen(process.env.PORT, () => {
-        server.isRunning = true;
-        console.log('server up');
-        done();
-      })
-      return;
-    }
-    done();
-  });
-
-  after(done => {
-    if(server.isRunning){
-      server.close(() => {
-        server.isRunning = false;
-        console.log('server down');
-        done();
-      })
-    }
-  });
+  before(serverControl.startServer);
+  after(serverControl.killServer);
   afterEach((done) => {
+    console.log('annnnnnnnnnyyyyyyyyythhhhhhhhhinggggggggggggggggg');
     User.remove({})
     .then(() => done())
-    .catch(done);
+    .catch((err) => {
+      console.log('errrrrrrrr',err);
+      done();
+    });
   });
+
   describe('testing POST /api/signup', function(){
     it('should return a user', function(done){
       superagent.post(`${baseURL}/api/signup`)
       .send({
-        username: 'turnip',
-        email: 'turnip@turnip.com',
-        password: 'turnipVentures',
+        username: 'boatsboats',
+        email: 'boats@boatsboats.com',
+        password: '1234',
+        phone: 2534487489,
       })
       .then(res => {
         console.log('token: ', res.text);
@@ -51,7 +37,55 @@ describe('testing auth-router', function(){
         expect(Boolean(res.text)).to.equal(true);
         done();
       })
-        .catch(done);
+      .catch(done);
+    });
+    it('should return a 400 error for bad signup', function(done){
+      superagent.post(`${baseURL}/api/signup`)
+      .send({
+        email: 'boats@boatsboats.com',
+        password: '1235',
+        phone: 2534487489,
+      })
+      .then(done)
+      .catch(err => {
+        expect(err.status).to.equal(400);
+        done();
+      });
+    });
+  });
+
+  describe('testing GET /api/login', function(){
+    beforeEach(userMocks.bind(this));
+
+    it('should respond with a token', (done) => {
+      superagent.get(`${baseURL}/api/login`)
+      .auth(this.tempUser.username, '1234')
+      .then(res => {
+        expect(res.status).to.equal(200);
+        expect(Boolean(res.text)).to.equal(true);
+        done();
+      })
+      .catch(done);
+    });
+    it('should respond with a 401 error', (done) => {
+      superagent.get(`${baseURL}/api/login`)
+      .auth(this.tempUser.username, '24234234')
+      .then(done)
+      .catch(err => {
+        expect(err.status).to.equal(401);
+        done();
+      })
+      .catch(done);
+    });
+    it('should respond with a 404 error', (done) => {
+      superagent.get(`${baseURL}/api/badlogin`)
+      .auth(this.tempUser.username, '1234')
+      .then(done)
+      .catch(err => {
+        expect(err.status).to.equal(404);
+        done();
+      })
+      .catch(done);
     });
   });
 });
