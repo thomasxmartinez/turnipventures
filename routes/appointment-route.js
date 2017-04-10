@@ -3,7 +3,7 @@
 const Router = require('express').Router;
 const jsonParser = require('body-parser').json();
 const createError = require('http-errors');
-const debug = require('debug')('turnipVentures:appointment_router');
+const debug = require('debug')('turnipVentures:appointment-route');
 const Appointment = require('../model/appointment');
 const bearerAuth = require('../lib/bear-auth');
 const appointmentRouter = module.exports = new Router();

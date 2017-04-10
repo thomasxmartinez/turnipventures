@@ -3,18 +3,19 @@
 require('./mock-env');
 const expect = require('chai').expect;
 const superagent = require('superagent');
-const User = require('../model/user');
-const Appointment = require('../model/appointment');
+const User = require('../model/user.js');
+const Appointment = require('../model/appointment.js');
 const userMocks = require('./lib/user-mocks.js');
-const appointmentMocks = require('./lib/appointment-mocks');
+const appointmentMocks = require('./lib/appointment-mocks.js');
 const serverControl = require('./lib/server-control.js');
 
 const baseURL = `http://localhost:${process.env.PORT}`;
 
-describe('testing appointment_router', function(){
+
+describe('testing appointment-route', function(){
   before(serverControl.startServer);
   after(serverControl.killServer);
-  after((done) => {
+  afterEach((done) => {
     Promise.all([
       User.remove({}),
       Appointment.remove({}),
@@ -24,7 +25,7 @@ describe('testing appointment_router', function(){
   });
   describe('testing POST /api/appointments', function(){
     before(userMocks.bind(this));
-    it('should respond with a appointment', (done) => {
+    it('should respond with an appointment', (done) => {
       superagent.post(`${baseURL}/api/appointments`)
       .send({ title: 'testAppointment' })
       .set('Authorization', `Bearer ${this.tempToken}`)
