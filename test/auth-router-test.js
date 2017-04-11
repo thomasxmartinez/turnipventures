@@ -43,7 +43,7 @@ describe('testing auth-router', function(){
       superagent.post(`${baseURL}/api/signup`)
       .send({
         email: 'boats@boatsboats.com',
-        password: '1235',
+        password: '1234',
         phone: 2534487489,
       })
       .then(done)
@@ -62,6 +62,7 @@ describe('testing auth-router', function(){
       .auth(this.tempUser.username, '1234')
       .then(res => {
         expect(res.status).to.equal(200);
+        console.log(res.body, 'omgflmfaorofl');
         expect(Boolean(res.text)).to.equal(true);
         done();
       })
@@ -69,7 +70,7 @@ describe('testing auth-router', function(){
     });
     it('should respond with a 401 error', (done) => {
       superagent.get(`${baseURL}/api/login`)
-      .auth(this.tempUser.username, '24234234')
+      .auth(this.tempUser.username, '1235')
       .then(done)
       .catch(err => {
         expect(err.status).to.equal(401);
