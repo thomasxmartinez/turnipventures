@@ -13,7 +13,7 @@ const serverControl = require('./lib/server-control');
 
 const baseURL = `http://localhost:${process.env.PORT}`;
 
-describe.only('testing photo_router', function() {
+describe('testing photo_router', function() {
   before(serverControl.startServer);
   after(serverControl.killServer);
   afterEach((done) => {
@@ -26,10 +26,11 @@ describe.only('testing photo_router', function() {
     .catch(done);
   });
   describe('testing POST /api/photos', function(){
-    beforeEach(mockUser.bind(this));
+    // beforeEach(mockUser.bind(this));
     beforeEach(mockProfile.bind(this));
+    console.log(this.tempToken, '>>>>>>>');
 
-    it('should return an photo model', (done) => {
+    it('should return a photo model', (done) => {
       superagent.post(`${baseURL}/api/photos`)
       .set('Authorization', `Bearer ${this.tempToken}`)
       .field('title', 'puppy2')

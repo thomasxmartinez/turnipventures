@@ -26,6 +26,7 @@ function s3Upload(params) {
 
 photoRouter.post('/api/photos', bearerAuth, upload.single('file'), function(req, res, next) {
   debug('POST /api/photos');
+  console.log(req.file, 'wrecked file');
 
   Profile.findOne({_id: req.body.profileID, userID: req.user_id})
   .then(() => {
