@@ -17,10 +17,12 @@ module.exports = function(done){
   .then(user => user.save())
   .then(user => {
     this.tempUser = user;
+    console.log(this.tempUser, '???????');
     return user.generateToken();
   })
   .then(token => {
     this.tempToken = token;
+    console.log(this.tempToken, '3434343434');
     done();
   })
   .catch(done);
