@@ -25,7 +25,6 @@ describe('Testing user model', function(){
       superagent.get(`${baseURL}/api/user/${this.tempUser._id.toString()}`)
       .set('Authorization', `Bearer ${this.tempToken}`)
       .then(res => {
-        console.log(res.body);
         expect(res.status).to.equal(200);
         expect(res.body.username).to.equal(this.tempUser.username);
         expect(Boolean(res.body._id)).to.equal(true);

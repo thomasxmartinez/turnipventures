@@ -26,11 +26,12 @@ describe('testing photo_router', function() {
     .catch(done);
   });
   describe('testing POST /api/photos', function(){
-    // beforeEach(mockUser.bind(this));
+    beforeEach(mockUser.bind(this));
     beforeEach(mockProfile.bind(this));
-    console.log(this.tempToken, '>>>>>>>');
+
 
     it('should return a photo model', (done) => {
+      console.log(this.tempToken, 'hahahah');
       superagent.post(`${baseURL}/api/photos`)
       .set('Authorization', `Bearer ${this.tempToken}`)
       .field('title', 'puppy2')

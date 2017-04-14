@@ -11,18 +11,17 @@ module.exports = function(done){
     email: 'boats@boatsboats.com' + Math.random(),
     password: '1234',
     phone: 2534484479,
+    findHash: 'goteam',
 
   })
   .generatePasswordHash('1234')
   .then(user => user.save())
   .then(user => {
     this.tempUser = user;
-    console.log(this.tempUser, '???????');
     return user.generateToken();
   })
   .then(token => {
     this.tempToken = token;
-    console.log(this.tempToken, '3434343434');
     done();
   })
   .catch(done);
