@@ -4,7 +4,7 @@ const {Router} = require('express');
 const createError = require('http-errors');
 const jsonParser = require('body-parser').json();
 const debug = require('debug')('turnipVentures:stripe-router');
-const stripe = require('stripe')('sk_test_Pg2fM1vgjK3dQLrT9MrcNHco');
+const stripe = require('stripe')('pk_test_jVnVyjiNMrjxAumvZDf5Irzv');
 
 const Appointment = require('../model/appointment.js');
 const bearerAuth = require('../lib/bearer-auth.js');

@@ -14,7 +14,6 @@ module.exports = function(done){
     }).save()
     .then(profile => {
       this.tempProfile = profile;
-      console.log(this.tempProfile.userID, 'lloooo');
       done();
     })
     .catch(done);
