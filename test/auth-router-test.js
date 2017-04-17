@@ -13,11 +13,10 @@ describe('testing auth-router', function(){
   before(serverControl.startServer);
   after(serverControl.killServer);
   afterEach((done) => {
-    console.log('annnnnnnnnnyyyyyyyyythhhhhhhhhinggggggggggggggggg');
     User.remove({})
     .then(() => done())
     .catch((err) => {
-      console.log('errrrrrrrr',err);
+      console.log(err);
       done();
     });
   });
@@ -32,7 +31,6 @@ describe('testing auth-router', function(){
         phone: 2534487489,
       })
       .then(res => {
-        console.log('token: ', res.text);
         expect(res.status).to.equal(200);
         expect(Boolean(res.text)).to.equal(true);
         done();
@@ -62,7 +60,6 @@ describe('testing auth-router', function(){
       .auth(this.tempUser.username, '1234')
       .then(res => {
         expect(res.status).to.equal(200);
-        console.log(res.body, 'omgflmfaorofl');
         expect(Boolean(res.text)).to.equal(true);
         done();
       })

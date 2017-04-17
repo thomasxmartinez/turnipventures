@@ -11,7 +11,6 @@ const authRouter = module.exports = new Router();
 
 authRouter.post('/api/signup', jsonParser, function(req, res, next){
   debug('POST /api/signup');
-  console.log('lulwat', req.body);
   let password = req.body.password;
   delete req.body.password;
   new User(req.body)
@@ -25,7 +24,6 @@ authRouter.post('/api/signup', jsonParser, function(req, res, next){
 
 authRouter.get('/api/login', basicAuthMiddleware,  function(req, res, next){
   debug('GET /api/login');
-  console.log(req.user, 'RANDOM STRING');
   req.user.generateToken()
   .then(token => res.send(token))
   .catch(next);

@@ -39,7 +39,7 @@ npm start
 
 ### To Create a User
 
-### To Create a Listing
+### To Create an appointment
 
 ### To Create a Profile
 
@@ -86,19 +86,19 @@ npm start
 ###### Retrieve account
 
 
-###### Retrieve the user's own listings
+###### Retrieve the user's own appointments
 
 
-###### Retrieve listings of all users
+###### Retrieve appointments of all users
 
 
-###### Create a listing
+###### Create an appointment
 
 
-###### Retrieve a listing
+###### Retrieve an appointment
 
 
-###### Update one of the user's existing listings
+###### Update one of the user's existing appointments
 
 
 ## Middleware
