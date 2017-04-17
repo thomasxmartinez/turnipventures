@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node main.js",
     "bwatch": "./node_modules/nodemon/bin/nodemon.js server.js",
-    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha ./test",
+    "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha",
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "debug": "DEBUG=turnipVentures* npm run test"
   },
