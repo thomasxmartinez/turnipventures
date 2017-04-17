@@ -9,7 +9,6 @@
   },
   "scripts": {
     "start": "node main.js",
-    "heroku-postbuild": "./node_modules/webpack/bin/webpack.js",
     "bwatch": "./node_modules/nodemon/bin/nodemon.js server.js",
     "test": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha ./test",
     "lint": "./node_modules/eslint/bin/eslint.js .",
