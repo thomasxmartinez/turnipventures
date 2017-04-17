@@ -1,7 +1,7 @@
 ### Turnip Ventures
 
 ### Team
-[Thomas Martinez](https://github.com/thomasxmartinez) |
+[Thomas Martinez](https://github.com/thomasxmartinez)
 
 [![Coverage Status](https://coveralls.io/repos/github/thomasxmartinez/turnipventures/badge.svg?branch=master)](https://coveralls.io/github/thomasxmartinez/turnipventures?branch=master)
 
