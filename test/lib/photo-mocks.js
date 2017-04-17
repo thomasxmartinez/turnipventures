@@ -9,7 +9,7 @@ module.exports = function(done){
     title:  'test' + Math.floor(Math.random() * 100),
     userID: this.tempUser._id.toString(),
     profileID: this.tempProfile._id.toString(),
-    awsKey: 'test.jpg',
+    awsKey: 'puppy2.jpg',
     photoURI: 'http://tempPhoto.com/tempPhoto.jpg',
   }).save()
   .then(photo => {

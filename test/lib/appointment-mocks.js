@@ -7,7 +7,7 @@ module.exports = function(done){
   debug('appointment-mocks');
   new Appointment({
     title:  'test' + Math.floor(Math.random() * 100),
-    start: Date.now(),
+    completion: false,
     userID: this.tempUser._id.toString(),
   }).save()
   .then(appointment => {

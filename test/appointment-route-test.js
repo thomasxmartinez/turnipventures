@@ -3,96 +3,104 @@
 require('./mock-env');
 const expect = require('chai').expect;
 const superagent = require('superagent');
-const User = require('../model/user.js');
-const Appointment = require('../model/appointment.js');
-const userMocks = require('./lib/user-mocks.js');
-const appointmentMocks = require('./lib/appointment-mocks.js');
+const User = require('../model/user');
+const Profile = require('../model/profile');
+const Appointment = require('../model/appointment');
+const mockUser = require('./lib/user-mocks');
+const mockProfile = require('./lib/profile-mocks');
+const appointmentMocks = require('./lib/appointment-mocks');
 const serverControl = require('./lib/server-control.js');
 
 const baseURL = `http://localhost:${process.env.PORT}`;
 
 
-describe('testing appointment-route', function(){
+describe('testing appointment router', function(){
   before(serverControl.startServer);
   after(serverControl.killServer);
   afterEach((done) => {
     Promise.all([
       User.remove({}),
+      Profile.remove({}),
       Appointment.remove({}),
     ])
     .then(() => done())
     .catch(done);
   });
-  describe('testing POST /api/appointments', function(){
-    before(userMocks.bind(this));
+
+  describe('testing POST /api/appointments', () => {
+    beforeEach(mockUser.bind(this));
+    beforeEach(mockProfile.bind(this));
+
     it('should respond with an appointment', (done) => {
+      console.log(this.tempProfile);
+      let example = { title:'example appointments', completion: false, userID: this.tempProfile.userID.toString() };
       superagent.post(`${baseURL}/api/appointments`)
-      .send({ title: 'testAppointment' })
+      .send(example)
       .set('Authorization', `Bearer ${this.tempToken}`)
       .then(res => {
         expect(res.status).to.equal(200);
-        expect(res.body.title).to.equal('testAppointment');
-        expect(res.body.userID).to.equal(this.tempUser._id.toString());
+        expect(res.body.title).to.equal('example appointments');
+        expect(res.body.completion).to.equal(false);
+
         done();
       })
       .catch(done);
     });
 
-    it('should respond with a 400 status code for bad request', (done) => {
-      superagent.post(`${baseURL}/api/appointments`)
-      .send({})
-      .set('Authorization', `Bearer ${this.tempToken}`)
+    it('test 401, when no appointment header is provided', (done) => {
+      superagent.post(`${baseURL}/api/appointments `)
+      .send({title: 'example appointments',  completion: false })
+      .set('Authorization', `Bearer ${this.aintmyToken}`)
       .then(done)
-      .catch((err) => {
-        console.log(err.status);
-        expect(err.status).to.equal(400);
-        done();
-      })
-      .catch(done);
-    });
-    it('should respond with a 401 status code for bad request', (done) => {
-      superagent.post(`${baseURL}/api/appointments`)
-      .send({title: 'testAppointment'})
-      .set('Authorization', `Bearer ${this.tempBlah}`)
-      .then(done)
-      .catch((err) => {
-        console.log(err.status);
+      .catch(err => {
         expect(err.status).to.equal(401);
         done();
       })
       .catch(done);
     });
-    it('should respond with a 404 status code for bad request', (done) => {
-      superagent.post(`${baseURL}/api/appointment`)
-      .send({title: 'testAppointment'})
+    it('should return a 400 if missing field', (done) => {
+      superagent.post(`${baseURL}/api/appointments`)
+      .send('{')
+      .set('Content-type', 'application/json')
       .set('Authorization', `Bearer ${this.tempToken}`)
       .then(done)
-      .catch((err) => {
-        console.log(err.status);
-        expect(err.status).to.equal(404);
+      .catch(err => {
+        expect(err.status).to.equal(400);
         done();
       })
       .catch(done);
     });
   });
+  it('should respond with a 404 with bad url', (done) => {
+    let url = `${baseURL}/api/fakeappointment`;
+    superagent.get(url)
+    .set('Authorization', `Bearer ${this.tempToken}`)
+    .then(done)
+    .catch(res => {
+      expect(res.status).to.equal(404);
+      done();
+    })
+    .catch(done);
+  });
 
   describe('testing GET /api/appointments/:id', function(){
-    beforeEach(userMocks.bind(this));
+    beforeEach(mockUser.bind(this));
     beforeEach(appointmentMocks.bind(this));
 
-    it('should respond with a appointment', (done) => {
+    it('should respond with an appointment', (done) => {
       let url = `${baseURL}/api/appointments/${this.tempAppointment._id.toString()}`;
       superagent.get(url)
       .set('Authorization', `Bearer ${this.tempToken}`)
       .then(res => {
         expect(res.status).to.equal(200);
         expect(res.body.title).to.equal(this.tempAppointment.title);
-        expect(res.body.userID).to.equal(this.tempUser._id.toString());
+        expect(res.body.completion).to.equal(false);
         done();
       })
       .catch(done);
     });
-    it('should respond with 401', (done) => {
+
+    it('test 401, when no appointment header is provided', (done) => {
       let url = `${baseURL}/api/appointments/${this.tempAppointment._id.toString()}`;
       superagent.get(url)
       .set('Authorization', `Bearer badtoken`)
@@ -103,9 +111,49 @@ describe('testing appointment-route', function(){
       })
       .catch(done);
     });
+
     it('should respond with a 404', (done) => {
       let url = `${baseURL}/api/appointments/fakeID`;
       superagent.get(url)
+      .set('Authorization', `Bearer ${this.tempToken}`)
+      .then(done)
+      .catch(res => {
+        expect(res.status).to.equal(404);
+        done();
+      })
+      .catch(done);
+    });
+  });
+  describe('testing DELETE /api/appointments/:id', function(){
+    beforeEach(mockUser.bind(this));
+    beforeEach(appointmentMocks.bind(this));
+
+    it('should return 204', (done) => {
+      let url = `${baseURL}/api/appointments/${this.tempAppointment._id.toString()}`;
+      superagent.delete(url)
+      .set('Authorization', `Bearer ${this.tempToken}`)
+      .then(res => {
+        expect(res.status).to.equal(204);
+        done();
+      })
+      .catch(done);
+    });
+
+    it('DELETE test 401, when no authorization header is provided', (done) => {
+      let url = `${baseURL}/api/appointments/${this.tempAppointment._id.toString()}`;
+      superagent.delete(url)
+      .set('Authorization', `Bearer badtoken`)
+      .then(done)
+      .catch(err => {
+        expect(err.status).to.equal(401);
+        done();
+      })
+      .catch(done);
+    });
+
+    it('should respond with a 404', (done) => {
+      let url = `${baseURL}/api/appointments/fakeID`;
+      superagent.delete(url)
       .set('Authorization', `Bearer ${this.tempToken}`)
       .then(done)
       .catch(res => {
