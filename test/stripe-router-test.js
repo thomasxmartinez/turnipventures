@@ -27,27 +27,27 @@ if(process.env.NODE_ENV === 'dev') {
       .catch(done);
     });
 
-    describe('testing POST /api/charge/:appointmentID', function() {
-      beforeEach(userMock.bind(this));
-      beforeEach(profileMock.bind(this));
-      beforeEach(appointmentMock.bind(this));
-      it('should respond with a charge object', done => {
-        superagent.post(`${baseURL}/api/charge/${this.tempAppointment._id.toString()}`)
-        .send({
-          exp_month: 11,
-          exp_year: 2017,
-          number: '4242 4242 4242 4242',
-          cvc: 731,
-        })
-        .set('Authorization', `Bearer ${this.tempToken}`)
-        .then(res => {
-          expect(res.status).to.equal(200);
-          expect(typeof res.body).to.equal('object');
-          done();
-        })
-        .catch(done);
-      });
-    });
-
-  });
+  //   describe('testing POST /api/charge/:appointmentID', function() {
+  //     beforeEach(userMock.bind(this));
+  //     beforeEach(profileMock.bind(this));
+  //     beforeEach(appointmentMock.bind(this));
+  //     it('should respond with a charge object', done => {
+  //       superagent.post(`${baseURL}/api/charge/${this.tempAppointment._id.toString()}`)
+  //       .send({
+  //         exp_month: 11,
+  //         exp_year: 2017,
+  //         number: '4242 4242 4242 4242',
+  //         cvc: 731,
+  //       })
+  //       .set('Authorization', `Bearer ${this.tempToken}`)
+  //       .then(res => {
+  //         expect(res.status).to.equal(200);
+  //         expect(typeof res.body).to.equal('object');
+  //         done();
+  //       })
+  //       .catch(done);
+  //     });
+  //   });
+  //
+  // });
 }
