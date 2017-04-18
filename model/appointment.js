@@ -8,7 +8,6 @@ const appointmentSchema = mongoose.Schema({
   completion: {type:Boolean, default:false},
   start:{type:Date, default: Date.now},
   userID: {type: mongoose.Schema.Types.ObjectId, required: true},
-  // appointmentID: [{type: mongoose.Schema.Types.ObjectId, ref: 'appointment'}],
 });
 
 module.exports = mongoose.model('appointment', appointmentSchema);
