@@ -149,5 +149,17 @@ describe('testing profile_router', function(){
       })
       .catch(done);
     });
+    it('should respond with a photos', done => {
+      let url = `${baseURL}/api/photos/${this.tempPhoto._id.toString()}`;
+      superagent.get(url)
+      .set('Authorization', `Bearer ${this.tempToken}`)
+      .then(res => {
+        expect(res.status).to.equal(200);
+        expect(res.body.title).to.equal(this.tempPhoto.title);
+        expect(res.body.userID).to.equal(this.tempUser._id.toString());
+        done();
+      })
+      .catch(done);
+    });
   });
 });
