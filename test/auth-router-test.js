@@ -70,9 +70,22 @@ describe('testing auth-router', function(){
         expect(err.status).to.equal(400);
         done();
       });
+      it('should respond with 409 status', done => {
+        superagent.post(`${baseURL}/api/signup`)
+        .send({
+          email: 'boats@boatsboats.com',
+          password: '1234',
+          phone: 2534487489,
+        })
+        .then(done)
+        .catch(err => {
+          expect(err.status).to.equal(409);
+          done();
+        })
+        .catch(done);
+      });
     });
   });
-
   describe('testing GET /api/login', function(){
     beforeEach(userMocks.bind(this));
 

@@ -31,7 +31,6 @@ describe('testing photo_router', function() {
 
 
     it('should return a photo model', (done) => {
-      console.log(this.tempToken, 'hahahah');
       superagent.post(`${baseURL}/api/photos`)
       .set('Authorization', `Bearer ${this.tempToken}`)
       .field('title', 'puppy2')
@@ -148,5 +147,5 @@ describe('testing photo_router', function() {
       .catch(done);
     });
   });
-  
+
 });

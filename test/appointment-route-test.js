@@ -32,7 +32,6 @@ describe('testing appointment router', function(){
     beforeEach(mockProfile.bind(this));
 
     it('should respond with an appointment', (done) => {
-      console.log(this.tempProfile);
       let example = { title:'example appointments', completion: false, userID: this.tempProfile.userID.toString() };
       superagent.post(`${baseURL}/api/appointments`)
       .send(example)
