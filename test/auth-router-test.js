@@ -37,6 +37,27 @@ describe('testing auth-router', function(){
       })
       .catch(done);
     });
+    it('a missing field should respond with 500 status', done => {
+      superagent.post(`${baseURL}/api/signup`)
+      .send({username: 'blah'})
+      .then(done)
+      .catch(err => {
+        expect(err.status).to.equal(500);
+        done();
+      })
+      .catch(done);
+    });
+
+    it('bad endpoint should respond with 404 status', done => {
+      superagent.post(`${baseURL}/api/sign`)
+      .send({})
+      .then(done)
+      .catch(err => {
+        expect(err.status).to.equal(404);
+        done();
+      })
+      .catch(done);
+    });
     it('should return a 400 error for bad signup', function(done){
       superagent.post(`${baseURL}/api/signup`)
       .send({
