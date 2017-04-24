@@ -49,7 +49,3 @@ const server = app.listen(process.env.PORT, () => {
 
 server.isOn = true;
 module.exports = server;
-
-
-
-  /*"lint": "./node_modules/eslint/bin/eslint.js .",*/
