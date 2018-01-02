@@ -2250,6 +2250,32 @@
             "description": "This endpoint returns the response using [deflate compression algoritm](https://en.wikipedia.org/wiki/DEFLATE). \nThe uncompressed response is a JSON string containing the details of the request sent by the client. For this endpoint to work, one should request with `Accept-encoding` header containing `deflate` as part of its value. Postman supports gzip, deflate and SDCH decoding and automatically sends them as part of the request.\n\nHTTP Compression allows the server to send responses in a compressed format, which is uncompressed by the client before processing. This reduces network bandwidth consumption at the cost of increase in CPU usage.\nTo know more about this, refer the [HTTP Compression](https://en.wikipedia.org/wiki/HTTP_compression) wikipedia article."
           },
           "response": []
+        },
+        {
+          "_postman_id": "39a204d5-944a-59d3-2dfe-90fd378cc3da",
+          "name": "IP address in JSON format",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var body = JSON.parse(responseBody);",
+                  "",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "tests[\"Valid response structure\"] = /^[a-fA-F:\\.0-9]+$/.test(body.ip);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": "https://postman-echo.com/ip",
+            "description": "A simple `GET` request to return the IP address of the source request in the following `JSON` format:\n\n```json\n{\n  ip: \"request-ip-address\"\n}\n```"
+          },
+          "response": []
         }
       ]
     },
@@ -2257,7 +2283,188 @@
       "_postman_id": "74a8adf0-4f3f-068a-7c35-9745aa7b57d1",
       "name": "Utilities / Date and Time",
       "description": "A set of `/time/*` mounted requests to perform date-time manipulations, among other operations.\n",
-      "item": []
+      "item": [
+        {
+          "_postman_id": "1ef02347-9a4d-5d6a-1b75-144dd6de641f",
+          "name": "Leap year check",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "tests[\"Comparsion was correct\"] = JSON.parse(responseBody).leap === true;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "https://postman-echo.com/time/leap?timestamp=2016-10-10",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "time",
+                "leap"
+              ],
+              "query": [
+                {
+                  "key": "timestamp",
+                  "value": "2016-10-10"
+                }
+              ]
+            },
+            "description": "A simple `GET` request to `/time/leap` to check if the provided/current timestamp belongs to a leap year.\n\nThis endpoint also accepts `timestamp`, `locale`, `format`, `strict`, and `target` query parameters to construct the date time instance to check against.\n\nResponses are provided in JSON format, with a `leap` key to indicate the result. The response code is `200` for valid query parameters, and `400` otherwise.\n\n```\n{\n  leap: true/false\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "2881587c-bd9f-0ed1-7c31-525e4ed5306c",
+          "name": "Current UTC time",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "tests[\"Time is in a valid format\"] = responseBody === postman.getResponseHeader(\"date\");",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": "https://postman-echo.com/time/now",
+            "description": "A simple `GET` request to `/time/now` to return the current timestamp as a UTC string.\n\n```\nFri, 04 Nov 2016 09:00:46 GMT\n```"
+          },
+          "response": [
+            {
+              "id": "f3f2053b-e446-a8b1-aee2-124618275f94",
+              "name": "time as text",
+              "originalRequest": {
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "html",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "",
+                  "name": "Access-Control-Allow-Credentials",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "",
+                  "name": "Access-Control-Allow-Headers",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "",
+                  "name": "Access-Control-Allow-Methods",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "",
+                  "name": "Access-Control-Allow-Origin",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Expose-Headers",
+                  "value": "",
+                  "name": "Access-Control-Expose-Headers",
+                  "description": ""
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Encoding",
+                  "value": "gzip",
+                  "name": "Content-Encoding",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "49",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/html; charset=utf-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Jan 2017 10:27:12 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"1d-2jJhkzratfVX9VZ0+raHbw\"",
+                  "name": "ETag",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "nginx/1.10.1",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding",
+                  "name": "Vary",
+                  "description": ""
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "sails.sid=s%3A2lT3TO7qS1tadeSAp4axl-NcXG9CV6Rf.HGqLY%2FlKEKY4fgCLePaAZs3tCHp%2Bglf7ZOJYlonGeig; Path=/; HttpOnly",
+                  "name": "set-cookie",
+                  "description": ""
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Mon Jan 18 2038 21:44:07 GMT+0000 (UTC)",
+                  "httpOnly": true,
+                  "domain": "postman-echo.com",
+                  "path": "/",
+                  "secure": false,
+                  "value": "s%3A2lT3TO7qS1tadeSAp4axl-NcXG9CV6Rf.HGqLY%2FlKEKY4fgCLePaAZs3tCHp%2Bglf7ZOJYlonGeig",
+                  "key": "sails.sid"
+                }
+              ],
+              "responseTime": "749",
+              "body": "Wed, 11 Jan 2017 10:27:12 GMT"
+            }
+          ]
+        }
+      ]
     },
     {
       "_postman_id": "084b21bd-d250-180b-5ed8-94cfaca39fdd",
