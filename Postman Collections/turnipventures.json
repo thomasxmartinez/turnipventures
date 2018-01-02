@@ -2912,52 +2912,6 @@
             "description": "A simple `GET` request to `/time/between` to check if the provided timestamp is between a range specified by the `start` and `end` query parameters. A resolution limit can also be specified by the `unit` query parameter.\n\nFor instance, for a resolution `unit` of `month`,\n`2016-10-05` does lie between `2016-11-02` and `2016-09-01`.\n\nThis endpoint also accepts `timestamp`, `locale`, `format`, `strict`, and `target` query parameters to construct the date time instance to check against.\n\nResponses are provided in JSON format, with a `between` key to indicate the result. The response code is `200` for valid query parameters, and `400` otherwise.\n\n```\n{\n  between: true/false\n}\n```"
           },
           "response": []
-        },
-        {
-          "_postman_id": "b4a2e234-3b0c-1a3e-14f8-5cafd567ee08",
-          "name": "Time subtraction",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "var difference = JSON.parse(responseBody).difference;",
-                  "",
-                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "body": {},
-            "url": {
-              "raw": "https://postman-echo.com/time/subtract?timestamp=2016-10-10&years=100",
-              "protocol": "https",
-              "host": [
-                "postman-echo",
-                "com"
-              ],
-              "path": [
-                "time",
-                "subtract"
-              ],
-              "query": [
-                {
-                  "key": "timestamp",
-                  "value": "2016-10-10"
-                },
-                {
-                  "key": "years",
-                  "value": "100"
-                }
-              ]
-            },
-            "description": "A simple `GET` request to `/time/subtract` to subtract units of time from the specified / current timestamp (as provided in the `years`, `months`, `days`, `hours`, `minutes`, `seconds`, and `milliseconds` query parameters).\n\nThis endpoint accepts `timestamp`, `locale`, `format`, and `strict` query parameters to construct the date time instance to check against.\n\nResponses are provided in JSON format, with a `difference` key to indicate the result. The response code is `200` for valid query parameters, and `400` otherwise.\n\n```\n{\n  difference: \"difference between (provided / current) and provided timestamps\"\n}\n```"
-          },
-          "response": []
         }
       ]
     },
