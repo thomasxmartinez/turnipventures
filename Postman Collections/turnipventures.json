@@ -2645,6 +2645,413 @@
             },
             "description": "A simple `GET` request to `/time/valid` to determine the validity of the timestamp, (current by default).\nThis endpoint accepts `timestamp`, `locale`, `format`, and `strict` query parameters to construct the date time instance to check against.\n\nResponses are provided in JSON format, with a valid key to indicate the result. The response code is `200`.\n\n```\n{\n  valid: true/false\n}\n```"
           },
+          "response": [
+            {
+              "id": "7aa5b2c4-70b5-d5f1-843b-ab90365ee59e",
+              "name": "Invalid Timestamp",
+              "originalRequest": {
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "",
+                  "name": "Access-Control-Allow-Credentials",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "",
+                  "name": "Access-Control-Allow-Headers",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "",
+                  "name": "Access-Control-Allow-Methods",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "",
+                  "name": "Access-Control-Allow-Origin",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Expose-Headers",
+                  "value": "",
+                  "name": "Access-Control-Expose-Headers",
+                  "description": ""
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "15",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Jan 2017 10:27:53 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"f-/i9mO/upK91ZtL0BkKFGtw\"",
+                  "name": "ETag",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "nginx/1.10.1",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding",
+                  "name": "Vary",
+                  "description": ""
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "sails.sid=s%3ATNJaNxi2QCv4RPBb64sIZxQGN1h6IP3g.9sQVAijlsLsh0r7LgffxXa9k2we6UumPEVv%2Bsk4woLI; Path=/; HttpOnly",
+                  "name": "set-cookie",
+                  "description": ""
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Mon Jan 18 2038 21:44:07 GMT+0000 (UTC)",
+                  "httpOnly": true,
+                  "domain": "postman-echo.com",
+                  "path": "/",
+                  "secure": false,
+                  "value": "s%3ATNJaNxi2QCv4RPBb64sIZxQGN1h6IP3g.9sQVAijlsLsh0r7LgffxXa9k2we6UumPEVv%2Bsk4woLI",
+                  "key": "sails.sid"
+                }
+              ],
+              "responseTime": "264",
+              "body": "{\"valid\":false}"
+            },
+            {
+              "id": "9fb04532-776f-0d8b-529a-9e3887fdebe4",
+              "name": "Valid Timestamp",
+              "originalRequest": {
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Access-Control-Allow-Credentials",
+                  "value": "",
+                  "name": "Access-Control-Allow-Credentials",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Allow-Headers",
+                  "value": "",
+                  "name": "Access-Control-Allow-Headers",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Allow-Methods",
+                  "value": "",
+                  "name": "Access-Control-Allow-Methods",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "",
+                  "name": "Access-Control-Allow-Origin",
+                  "description": ""
+                },
+                {
+                  "key": "Access-Control-Expose-Headers",
+                  "value": "",
+                  "name": "Access-Control-Expose-Headers",
+                  "description": ""
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive",
+                  "name": "Connection",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "14",
+                  "name": "Content-Length",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8",
+                  "name": "Content-Type",
+                  "description": ""
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 11 Jan 2017 10:27:33 GMT",
+                  "name": "Date",
+                  "description": ""
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"e-OYN7L87J1Ba9oy5mJE2kcA\"",
+                  "name": "ETag",
+                  "description": ""
+                },
+                {
+                  "key": "Server",
+                  "value": "nginx/1.10.1",
+                  "name": "Server",
+                  "description": ""
+                },
+                {
+                  "key": "Vary",
+                  "value": "Accept-Encoding",
+                  "name": "Vary",
+                  "description": ""
+                },
+                {
+                  "key": "set-cookie",
+                  "value": "sails.sid=s%3AdDGZPe1CZw4mAxGVCHr6RfCADCAwquXa.F5MEm5LJad30JHrSwGGoyWLn2OAAGdvUM7kDtzNfdFI; Path=/; HttpOnly",
+                  "name": "set-cookie",
+                  "description": ""
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Mon Jan 18 2038 21:44:07 GMT+0000 (UTC)",
+                  "httpOnly": true,
+                  "domain": "postman-echo.com",
+                  "path": "/",
+                  "secure": false,
+                  "value": "s%3AdDGZPe1CZw4mAxGVCHr6RfCADCAwquXa.F5MEm5LJad30JHrSwGGoyWLn2OAAGdvUM7kDtzNfdFI",
+                  "key": "sails.sid"
+                }
+              ],
+              "responseTime": "493",
+              "body": "{\"valid\":true}"
+            }
+          ]
+        },
+        {
+          "_postman_id": "8cc2e733-7e68-8ad8-efd1-5393510a300a",
+          "name": "Between timestamps",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var after = JSON.parse(responseBody).after;",
+                  "",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "tests[\"Comparsion was correct\"] = after === false;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "https://postman-echo.com/time/between?timestamp=2016-10-10&start=2017-10-10&end=2019-10-10",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "time",
+                "between"
+              ],
+              "query": [
+                {
+                  "key": "timestamp",
+                  "value": "2016-10-10"
+                },
+                {
+                  "key": "start",
+                  "value": "2017-10-10"
+                },
+                {
+                  "key": "end",
+                  "value": "2019-10-10"
+                }
+              ]
+            },
+            "description": "A simple `GET` request to `/time/between` to check if the provided timestamp is between a range specified by the `start` and `end` query parameters. A resolution limit can also be specified by the `unit` query parameter.\n\nFor instance, for a resolution `unit` of `month`,\n`2016-10-05` does lie between `2016-11-02` and `2016-09-01`.\n\nThis endpoint also accepts `timestamp`, `locale`, `format`, `strict`, and `target` query parameters to construct the date time instance to check against.\n\nResponses are provided in JSON format, with a `between` key to indicate the result. The response code is `200` for valid query parameters, and `400` otherwise.\n\n```\n{\n  between: true/false\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b4a2e234-3b0c-1a3e-14f8-5cafd567ee08",
+          "name": "Time subtraction",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var difference = JSON.parse(responseBody).difference;",
+                  "",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "https://postman-echo.com/time/subtract?timestamp=2016-10-10&years=100",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "time",
+                "subtract"
+              ],
+              "query": [
+                {
+                  "key": "timestamp",
+                  "value": "2016-10-10"
+                },
+                {
+                  "key": "years",
+                  "value": "100"
+                }
+              ]
+            },
+            "description": "A simple `GET` request to `/time/subtract` to subtract units of time from the specified / current timestamp (as provided in the `years`, `months`, `days`, `hours`, `minutes`, `seconds`, and `milliseconds` query parameters).\n\nThis endpoint accepts `timestamp`, `locale`, `format`, and `strict` query parameters to construct the date time instance to check against.\n\nResponses are provided in JSON format, with a `difference` key to indicate the result. The response code is `200` for valid query parameters, and `400` otherwise.\n\n```\n{\n  difference: \"difference between (provided / current) and provided timestamps\"\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "b709b99c-3347-40fc-2c21-98ceb7f9e267",
+          "name": "Before comparisons",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var before = JSON.parse(responseBody).before;",
+                  "",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "tests[\"Comparsion was correct\"] = before === true;"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "https://postman-echo.com/time/before?timestamp=2016-10-10&target=2017-10-10",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "time",
+                "before"
+              ],
+              "query": [
+                {
+                  "key": "timestamp",
+                  "value": "2016-10-10"
+                },
+                {
+                  "key": "target",
+                  "value": "2017-10-10"
+                }
+              ]
+            },
+            "description": "A simple `GET` request to `/time/before` to check if the provided timestamps is before a comparison `target` (query parameter).\n\nThis endpoint accepts `timestamp`, `locale`, `format`, `strict`, and `target` query parameters to construct the date time instance to check against.\n\nResponses are provided in JSON format, with a `before` key to indicate the result. The response code is `200` for valid query parameters, and `400` otherwise.\n\n```\n{\n  before: true/false\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "_postman_id": "c38e8be7-1739-2108-1804-a8b171c75298",
+          "name": "Format timestamp",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var format = JSON.parse(responseBody).format;",
+                  "",
+                  "tests[\"Status code is 200\"] = responseCode.code === 200;",
+                  "tests[\"Formatted result is valid\"] = format === \"20\";",
+                  ""
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {},
+            "url": {
+              "raw": "https://postman-echo.com/time/format?timestamp=2016-10-10&format=mm",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "time",
+                "format"
+              ],
+              "query": [
+                {
+                  "key": "timestamp",
+                  "value": "2016-10-10"
+                },
+                {
+                  "key": "format",
+                  "value": "mm"
+                }
+              ]
+            },
+            "description": "A simple `GET` request to `/time/format` to convert the timestamp to any desired valid format.\n\nThis endpoint accepts `timestamp`, `locale`, `format`, and `strict` query parameters to construct the date time instance to check against.\n\nResponses are provided in JSON format, with a `format` key to indicate the result. The response code is `200` for valid query parameters, and `400` otherwise.\n\n```\n{\n  format: \"formatted-timestamp\"\n}\n```"
+          },
           "response": []
         }
       ]
