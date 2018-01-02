@@ -1746,6 +1746,56 @@
             "description": "The HTTP `DELETE` method is used to delete resources on a server. The exact\nuse of `DELETE` requests depends on the server implementation. In general, \n`DELETE` requests support both, Query String parameters as well as a Request \nBody.\n\nThis endpoint accepts an HTTP `DELETE` request and provides debug information\nsuch as the HTTP headers, Query String arguments, and the Request Body."
           },
           "response": []
+        },
+        {
+          "_postman_id": "083e46e7-53ea-87b1-8104-f8917ce58a17",
+          "name": "POST Form Data",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "var responseJSON;",
+                  "",
+                  "try { ",
+                  "    responseJSON = JSON.parse(responseBody); ",
+                  "    tests['response is valid JSON'] = true;",
+                  "}",
+                  "catch (e) { ",
+                  "    responseJSON = {}; ",
+                  "    tests['response is valid JSON'] = false;",
+                  "}",
+                  "",
+                  "",
+                  "tests['response has post data'] = _.has(responseJSON, 'form');",
+                  "tests['response matches the data posted'] = (responseJSON.form && responseJSON.form.strange === 'boom');"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "strange",
+                  "value": "boom",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": "https://postman-echo.com/post",
+            "description": "The HTTP `POST` request method is meant to transfer data to a server \n(and elicit a response). What data is returned depends on the implementation\nof the server.\n\nA `POST` request can pass parameters to the server using \"Query String \nParameters\", as well as the Request Body. For example, in the following request,\n\n> POST /hi/there?hand=wave\n>\n> <request-body>\n\nThe parameter \"hand\" has the value \"wave\". The request body can be in multiple\nformats. These formats are defined by the MIME type of the request. The MIME \nType can be set using the ``Content-Type`` HTTP header. The most commonly used \nMIME types are:\n\n* `multipart/form-data`\n* `application/x-www-form-urlencoded`\n* `application/json`\n\nThis endpoint echoes the HTTP headers, request parameters, the contents of\nthe request body and the complete URI requested when data is sent as a form parameter."
+          },
+          "response": []
         }
       ]
     },
